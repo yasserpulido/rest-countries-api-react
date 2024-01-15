@@ -21,7 +21,6 @@ export const DarkModeProvider = ({ children }: Props) => {
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
-        console.log("toggleColorMode");
         setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
       },
     }),
