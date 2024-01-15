@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   CircularProgress,
@@ -23,11 +23,14 @@ const Home = () => {
   const query = useQuery({
     queryKey: ["countries"],
     queryFn: CountryApi.getCountries,
+    refetchOnWindowFocus: false,
   });
 
-  if (query.data) {
-    queryClient.setQueryData(["countries"], query.data);
-  }
+  useEffect(() => {
+    if (query.data) {
+      queryClient.setQueryData(["countries"], query.data);
+    }
+  }, [query.data, queryClient]);
 
   const countries = query.data || [];
 
